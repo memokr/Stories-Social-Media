@@ -7,6 +7,7 @@
 
 import AVFoundation
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
     // Capture session
@@ -101,7 +102,7 @@ class ViewController: UIViewController {
             break
         }
     }
-
+    @MainActor
     private func setUpCamera() {
         let session = AVCaptureSession()
         if let device = AVCaptureDevice.default(for: .video) {
@@ -189,9 +190,27 @@ class ViewController: UIViewController {
     @objc private func savePhoto() {
            // Handle save action
            if let capturedImage = self.capturedImage {
-               // Perform the action to save the image (e.g., store it in a variable or database)
-               print("Image saved!")
+               Task{
+                   
+                   guard let uid = Auth.auth().currentUser?.uid else { return }
+                   guard let imageUrl = try await ImageUploader.uploadImage(image: capturedImage) else {return}
+                   
+                   let postRef = Firestore.firestore().collection("posts").document()
+                   let post = Post(id: postRef.documentID, ownerUid: uid, imageUrl: imageUrl)
+                   guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
+                   
+                   try await postRef.setData(encodedPost)
+                   
+               }
            }
+        for subview in view.subviews {
+            if let imageView = subview as? UIImageView {
+                imageView.removeFromSuperview()
+            }
+        }
+        retakeButton.isHidden = true
+        saveButton.isHidden = true
+        session?.startRunning()
        }
 }
 

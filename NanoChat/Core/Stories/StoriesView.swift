@@ -15,6 +15,7 @@ struct StoriesView: View {
     @State private var updatedUser: User?
     @StateObject var viewModel: StoriesViewModel
     @State private var capturedImage: UIImage?
+    @State private var isStoriePresented = false
     
     
     init(current_user: User) {
@@ -44,13 +45,20 @@ struct StoriesView: View {
                                     VStack {
                                         
                                         if let imageUrl = user.profileImageUrl {
-                                            KFImage(URL(string: imageUrl))
-                                                .resizable()
-                                                .scaledToFill()
-                                                .frame(width: 100, height: 100)
-                                                .clipShape(Circle())
-                                            
-                                            Text(user.username).font(.system(size: 12)).bold().padding(.top,3)
+                                            Button{
+                                                isStoriePresented = true
+                                                
+                                            } label: {
+                                                VStack{
+                                                    KFImage(URL(string: imageUrl))
+                                                        .resizable()
+                                                        .scaledToFill()
+                                                        .frame(width: 100, height: 100)
+                                                        .clipShape(Circle())
+                                                    
+                                                    Text(user.username).font(.system(size: 12)).bold().padding(.top,3).foregroundColor(.black)
+                                                }
+                                            }
                                         }
                                         else {
                                             ZStack {
@@ -72,6 +80,8 @@ struct StoriesView: View {
                                     }
                                 }
                             }
+                        }.sheet(isPresented: $isStoriePresented) {
+                            PostsView(post: Post.MOCK_POSTS[0])
                         }
                     }
                 }.padding()
