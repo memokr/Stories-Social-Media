@@ -20,13 +20,13 @@ struct LoginView: View {
             VStack {
                 
                 Text("NanoSnap").padding(.bottom,50).font(.largeTitle).bold()
-                VStack {
-                    TextField( "Enter your email",text: $viewModel.email)
+                VStack(){
+                    TextField("Enter your email", text: $viewModel.email)
                         .autocapitalization (.none)
                         .font (. subheadline)
-                        .padding (12)
+                        .padding(12)
                         .background (Color (.systemGray6))
-                        .cornerRadius (10)
+                        .cornerRadius(10)
                         .padding (.horizontal, 24)
                         .disableAutocorrection(true)
                 
@@ -46,9 +46,8 @@ struct LoginView: View {
                         .font(.footnote)
                         .fontWeight (.semibold)
                         .padding (.top)
-                        .padding (.trailing, 28)
-                        .frame(maxWidth:.infinity, alignment: .trailing)
-                        .foregroundColor(colorScheme == .light ? .black : .white)
+                        .padding (.leading, 220)
+                        .foregroundColor(colorScheme == .light ? .gray : .white)
                 }
                 
                 Button {
@@ -67,7 +66,8 @@ struct LoginView: View {
                         .frame (width: 360, height: 44)
                         .background(Color(colorScheme == .light ? .black : .white))
                         .cornerRadius (8)
-                        .padding (.vertical)
+                        .padding()
+                        .textContentType(.oneTimeCode)
                 }
                 
                 NavigationLink {
@@ -75,7 +75,6 @@ struct LoginView: View {
                         .navigationBarBackButtonHidden()
                 }label: {
                     VStack {
-                        Divider().foregroundColor(colorScheme == .light ? .black : .white)
                         HStack {
                             Text ("Don't have an account?")
                             Text ("Sign Up")

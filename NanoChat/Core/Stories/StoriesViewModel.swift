@@ -48,6 +48,7 @@ class StoriesViewModel: ObservableObject {
             
             let snapshot = try await Firestore.firestore().collection("users").document(current_user.id).getDocument()
             
+            
             if let profileImageUrl = snapshot["profileImageUrl"] as? String {
                 self.current_user.profileImageUrl = profileImageUrl
                 print("DEBUG MODEL \(String(describing: current_user.profileImageUrl))" )

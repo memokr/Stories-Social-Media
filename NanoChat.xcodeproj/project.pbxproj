@@ -62,6 +62,7 @@
 		104A2EAC2B07BB3E0012B834 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A2EAB2B07BB3E0012B834 /* ImageUploader.swift */; };
 		104A2EAE2B0A16090012B834 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A2EAD2B0A16090012B834 /* ProfileImageView.swift */; };
 		104A2EB12B0A16650012B834 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 104A2EB02B0A16650012B834 /* Kingfisher */; };
+		106673012B0E8838009FC1B9 /* DiscoverModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106673002B0E8838009FC1B9 /* DiscoverModal.swift */; };
 		10E05F502B0BA7BC005232AE /* LiveCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E05F4F2B0BA7BC005232AE /* LiveCamera.swift */; };
 		10E05F522B0BA81D005232AE /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E05F512B0BA81D005232AE /* FrameView.swift */; };
 		10E05F542B0BA8E3005232AE /* FrameHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E05F532B0BA8E3005232AE /* FrameHandler.swift */; };
@@ -98,6 +99,7 @@
 		104A2EA92B07B75F0012B834 /* EditUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserModel.swift; sourceTree = "<group>"; };
 		104A2EAB2B07BB3E0012B834 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		104A2EAD2B0A16090012B834 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		106673002B0E8838009FC1B9 /* DiscoverModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverModal.swift; sourceTree = "<group>"; };
 		10E05F4F2B0BA7BC005232AE /* LiveCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCamera.swift; sourceTree = "<group>"; };
 		10E05F512B0BA81D005232AE /* FrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
 		10E05F532B0BA8E3005232AE /* FrameHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameHandler.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				104A2EA92B07B75F0012B834 /* EditUserModel.swift */,
 				104A2EAB2B07BB3E0012B834 /* ImageUploader.swift */,
 				104A2EAD2B0A16090012B834 /* ProfileImageView.swift */,
+				106673002B0E8838009FC1B9 /* DiscoverModal.swift */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				104A2EA22B0775D00012B834 /* UserAccountView.swift in Sources */,
 				103991322B03813600B35509 /* NanoChatApp.swift in Sources */,
 				10E05F522B0BA81D005232AE /* FrameView.swift in Sources */,
+				106673012B0E8838009FC1B9 /* DiscoverModal.swift in Sources */,
 				104A2EAA2B07B75F0012B834 /* EditUserModel.swift in Sources */,
 				10E05F542B0BA8E3005232AE /* FrameHandler.swift in Sources */,
 				104198AB2B0D57BC00932198 /* PostModel.swift in Sources */,

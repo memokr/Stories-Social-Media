@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         button.layer.borderWidth = 10
         button.layer.borderColor = UIColor.white.cgColor
         button.backgroundColor = UIColor.clear
+        button.accessibilityLabel = "Take Picture"
         return button
     }()
 
@@ -50,6 +51,7 @@ class ViewController: UIViewController {
         button.setImage(image, for: .normal)
         button.tintColor = .white // Set the tint color for the system image
         button.addTarget(self, action: #selector(retakePhoto), for: .touchUpInside)
+        button.accessibilityLabel = "Retake Picture"
         button.isHidden = true // Hide initially
         return button
     }()
@@ -60,6 +62,7 @@ class ViewController: UIViewController {
             button.setImage(image, for: .normal)
             button.tintColor = .white
             button.addTarget(self, action: #selector(savePhoto), for: .touchUpInside)
+            button.accessibilityLabel = "Save Photo"
             button.isHidden = true // Hide initially
             return button
         }()
@@ -191,12 +194,22 @@ class ViewController: UIViewController {
            // Handle save action
            if let capturedImage = self.capturedImage {
                Task{
-                   
                    guard let uid = Auth.auth().currentUser?.uid else { return }
-                   guard let imageUrl = try await ImageUploader.uploadImage(image: capturedImage) else {return}
+           
                    
+                   let snapshot = try await Firestore.firestore()
+                              .collection("posts")
+                              .whereField("ownerUid", isEqualTo: uid)
+                              .getDocuments()
+                   
+                   if let existingPost = snapshot.documents.first {
+                           let existingPostId = existingPost.documentID
+                           try await Firestore.firestore().collection("posts").document(existingPostId).delete()
+                       }
+                   
+                   guard let imageUrl = try await ImageUploader.uploadImage(image: capturedImage) else {return}
                    let postRef = Firestore.firestore().collection("posts").document()
-                   let post = Post(id: postRef.documentID, ownerUid: uid, imageUrl: imageUrl)
+                   let post = Post(id: postRef.documentID, ownerUid: uid, imageUrl: imageUrl,timestamp: Timestamp())
                    guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
                    
                    try await postRef.setData(encodedPost)

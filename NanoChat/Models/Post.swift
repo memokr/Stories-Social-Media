@@ -6,12 +6,13 @@
 //
 
 import Foundation
-
+import Firebase
 
 struct Post: Identifiable, Codable{
     let id: String
     let ownerUid: String
-    let imageUrl: String
+    var imageUrl: String
+    let timestamp: Timestamp
     var user: User?
 }
 
@@ -20,7 +21,9 @@ extension Post{
         .init(
             id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
-            imageUrl: "asset_1"
+            imageUrl: "asset_1",
+            timestamp: Timestamp()
+  
         )
     ]
 }

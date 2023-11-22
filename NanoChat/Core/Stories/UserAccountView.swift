@@ -12,6 +12,8 @@ import Kingfisher
 struct UserAccountView: View {
     @Environment (\.dismiss) var dismiss
     @StateObject var viewModel: EditUserModel
+    
+    @Environment(\.colorScheme) var colorScheme
 
     init(user: User) {
         self._viewModel = StateObject(wrappedValue: EditUserModel(user: user))
@@ -41,7 +43,8 @@ struct UserAccountView: View {
                     PhotosPicker(selection: $viewModel.selectedImage){
                         Image(systemName: "pencil")
                             .frame(width: 100,height: 100)
-                            .foregroundColor(.black)
+                            .foregroundColor(colorScheme == .light ? .black : .white)
+                        
                     }
                    
                     Text(viewModel.user.username)
@@ -57,7 +60,7 @@ struct UserAccountView: View {
                         dismiss()
                     }) {
                         Image(systemName: "xmark")
-                            .foregroundColor(.black)
+                            .foregroundColor(colorScheme == .light ? .black : .white)
                             .imageScale(.large)
                             .padding()
                     }
@@ -70,7 +73,7 @@ struct UserAccountView: View {
                         dismiss()
                     } label: {
                         Image(systemName: "checkmark")
-                            .foregroundColor(.black)
+                            .foregroundColor(colorScheme == .light ? .black : .white)
                             .imageScale(.large)
                             .padding()
                     }
